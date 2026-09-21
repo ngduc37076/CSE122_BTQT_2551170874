@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang quảng cáo tour du lịch</title>
+    <style>
+  .container{
+    width: 720px; /* Cố định chiều rộng khung bài viết */
+    margin: 0 auto; /* Căn giữa trang web */
+    padding-bottom: 100px;
+    background: linear-gradient(to bottom, #C9A227, #A8861B);
+    color:#FFFFFF ;
+    text-align: justify;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+    line-height: 25px;
+    border:20px solid whitesmoke;
+    border-top:30px solid whitesmoke;
+    border-bottom:30px solid whitesmoke;
+  }
+  .main-title{
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Thêm hiệu ứng đổ bóng chữ */
+  }
+img {
+    float: right;
+    width: 245px;
+    padding: 3px; /* Tạo khoảng đệm màu trắng xung quanh ảnh (viền dày hơn ở bên trong) */
+    margin-left: 15px; /* Tạo khoảng cách giữa chữ và ảnh bên phải */
+    background-color: white; Tạo hiệu ứng màu trắng mờ (trong suốt) cho khung viền
+    border: 1px solid white; /* Đường viền mảnh màu trắng mờ bên ngoài */
+    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+    <main class="container">
+        <section class="main-title">
+         <h1>“Bất đáo Trường Thành phi hảo hán”...</h1>
+        </section>
+        <img src="Gui_SV_BTTH/Anh/Bai02/greatwall.jpg" alt="Vạn Lý Trường Thành">
+        <p>
+            Công ty du lịch Hoàn Mỹ giới thiệu hành trình khám phá Trung Hoa:
+            chính phục Vạn Lý Trường Thành, ghé Thập Tam Lăng, tham quan Cung Điện Mùa Hè – nơi Từ Hy Thái Hậu cho "đào hồ, đắp núi, xây chùa".
+        </p>
+
+        <p>
+            Du khách còn được dạo quảng trường Thiên An Môn, chiêm ngưỡng Cố 
+            Cung, thưởng thức vịt quay Bắc Kinh. Tiếp đó là Thượng Hải với vườn Dự Viên và khu lầu Vạn Quốc bên bến sông Hoàng Phố.
+        </p>
+
+        <p>
+            Hành trình khép lại ở Hàng Châu – nơi có tích  "cầu gãy mà không gãy"
+            gắn với chuyện Lương Sơn Bá – Chúc Anh Đài, cùng thiên đường mua sắm ngọc trai quý hiếm.
+        </p>
+      </main>
+</body>
+</html>

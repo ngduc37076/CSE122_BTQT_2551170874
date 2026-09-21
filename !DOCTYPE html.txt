@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- 
+    1. h1 - h6(heading)
+    2. p (paragraph - văn bản)
+    3.img (image)
+    4. a (anchor) tới trang mà mình gắn link
+    5. ul, li (hiển thị danh sách)
+    6. table (bảng)
+    7. input (text,checkbox,radio)
+    8. button (nút)
+    9. div (tạo khối bao quanh phần tử khác)
+-->
+<html>
+    <!-- Phần dầu-->
+    <head>
+        <title>F8</title>
+        <meta charset="utf-8">  <!--nằm trong head dùng để hiển thị TV chuẩn với bảng mã chuẩn quốc tế utf-8-->
+    </head>
+    <!-- Phần thân  -->
+    <body>
+       <div>
+            <h1 title="Đây là tiêu đề">Chiến tranh biên giới 1979</h1>
+            <input type="text">
+            <button>Đăng kí</button>
+            <p>Việt Nam và Trung Quốc đã đụng độ nhau tại biên giới hai nước</p>
+            <img src="https://khoinguonsangtao.vn/wp-content/uploads/2021/12/hinh-nen-may-tinh.jpg" alt="Ảnh quang cảnh">
+            <a href="https://www.youtube.com/watch?v=kMCbva2SvMU&list=RDkMCbva2SvMU&start_radio=1">Tới trang youtube</a>
+            <ul>
+                <li>Việt Nam</li>
+                <li>Nhật Bản</li>
+                <li>Trung Quốc</li>
+                <li>Hàn Quốc</li>
+            </ul>
+
+            <table>
+                    <thead>
+                        <th>STT</th>
+                        <th>Tên</th>
+                        <th>Địa Chỉ</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Đức</td>
+                            <td>Hưng Yên</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Đức 2</td>
+                            <td>Hưng Yên 2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Đức 3</td>
+                            <td>Hưng Yên 3</td>
+                        </tr>
+                    </tbody> 
+            </table>
+       </div>
+    </body>
+</html>
+ 
+      
