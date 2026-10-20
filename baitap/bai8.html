@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang tin: Ai? Cái gì? Ở đâu?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 30px;
+            display: flex; 
+            justify-content: center;
+        }
+
+        .container {
+            width: 900px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px 0 30px; 
+        }
+
+        .page-title {
+            color: #1668C1;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #1668C1;
+            margin: 0 -30px 0 -30px;
+            padding: 0 30px 10px 30px; 
+        }
+
+        .layout {
+            display: flex; /*chia bố cục thành hai phần*/
+        }
+
+        /* CỘT TRÁI */
+        .sidebar {
+            width: 180px;
+            /* Thêm nền xanh da trời nhạt */
+            background-color: #f4f9fd; 
+            /* margin âm để kéo đường viền gạch chân tràn sát ra tận mép viền trái và phải của .container, sau đó dùng padding để đẩy chữ bên trong vào lại vị trí cân đối. */
+            margin-left: -30px; 
+            padding-left: 30px;
+            padding-top: 20px; 
+            padding-bottom: 20px; 
+            padding-right: 20px;
+            border-right: 1px solid #dcdcdc; 
+            flex-shrink: 0; /*Ngăn không cho cột menu bị bóp méo hay co lại khi màn hình thu nhỏ.*/
+        }
+
+        .menu-title {
+            font-size: 11px;
+            color: #888;
+            font-weight: bold;
+            text-transform: uppercase; /*chữ in hoa*/
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            margin-bottom: 12px;
+        }
+
+        .menu a {
+            text-decoration: none; /*Xóa bỏ hoàn toàn các kiểu trang trí mặc định của văn bản.*/
+            color: #1668C1;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .menu a:hover {
+            text-decoration: underline; /*thêm gạch chân*/
+        }
+
+        /* CỘT PHẢI */
+        .content {
+            flex: 1;
+            padding-top: 20px;
+            padding-bottom: 20px; 
+            padding-left: 20px;
+        }
+
+        .category-block {
+            margin-bottom: 15px;
+        }
+
+        .category-title {
+            background-color: #1668C1;
+            color: #FFFFFF;
+            padding: 6px 12px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .article {
+            display: flex;
+            justify-content: space-between; /*Đây là một thuộc tính rất quan trọng trong Flexbox. 
+            Nó giúp căn chỉnh các phần tử con nằm bên trong một hàng: phần tử đầu tiên sẽ dạt sát mép trái, phần tử cuối cùng dạt sát mép phải, 
+            và khoảng trống dư thừa sẽ được đẩy đều vào giữa các phần tử.*/
+            border-bottom: 1px dashed #ccc;/*nét đứt*/
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .article-text {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .article-title {
+            color: #1668C1;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+
+        .article-desc {
+            font-size: 13px;
+            color: #333333;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* CSS CHO NÚT VỀ ĐẦU TRANG */
+        .back-to-top {
+            text-align: right; /* Căn phải */
+            margin-top: 8px;
+        }
+
+        .back-to-top a {
+            color: #1668C1;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        
+        .back-to-top a:hover {
+            text-decoration: underline;
+        }
+
+        .article-img {
+            flex-shrink: 0;/*Ngăn không cho cột menu bị bóp méo hay co lại khi màn hình thu nhỏ.*/
+        }
+
+        .article-img img {
+            width: 120px;
+            border-radius: 6px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            object-fit: cover; /*Giúp ảnh không bị méo hình khi hiển thị trong khung cố định.*/
+        }
+
+    </style>
+</head>
+
+<body id="top"> <!-- Đặt id="top" để nút về đầu trang hoạt động -->
+
+    <div class="container">
+        <h1 class="page-title">Ai? Cái gì? Ở đâu? ...</h1>
+
+        <div class="layout">
+            
+            <aside class="sidebar">
+                <div class="menu-title">Chuyên mục</div>
+                <ul class="menu">
+                    <li><a href="#tinh-yeu">Tình yêu và gia đình</a></li>
+                    <li><a href="#suc-khoe">Sức khỏe</a></li>
+                    <li><a href="#du-lich">Du lịch</a></li>
+                    <li><a href="#am-thuc">Ẩm thực</a></li>
+                    <li><a href="#am-nhac">Âm nhạc</a></li>
+                </ul>
+            </aside>
+
+            <main class="content">
+                <div class="category-block" id="tinh-yeu">
+                    <div class="category-title">Tình yêu và gia đình</div>
+                    
+                    <div class="article">
+                        <div class="article-text">
+                            <h3 class="article-title">Trầu cau</h3>
+                            <p class="article-desc">Tình yêu là gì? Là ta yêu một người mỗi ngày trong một năm. Mỗi năm trong một đời người...</p>
+                            <!-- Nút về đầu trang -->
+                            <div class="back-to-top"><a href="#top">Về đầu trang</a></div>
+                        </div>
+                        <div class="article-img">
+                            <img src="Gui_SV_BTTH/Anh/Bai08/traucau.jpg" alt="Trầu cau">
+                        </div>
+                    </div>
+
+                    <div class="article">
+                        <div class="article-text">
+                            <h3 class="article-title">Xây dựng hạnh phúc gia đình qua những bữa cơm hàng ngày</h3>
+                            <p class="article-desc">Nói đến hạnh phúc gia đình chúng ta thường mô tả bằng những từ thật đẹp đẽ và được thể hiện qua những giá trị đạo đức đáng trân trọng...</p>
+                            <!-- Nút về đầu trang -->
+                            <div class="back-to-top"><a href="#top">Về đầu trang</a></div>
+                        </div>
+                        <div class="article-img">
+                            <img src="Gui_SV_BTTH/Anh/Bai08/comtrua.jpg" alt="Cơm trưa">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-block" id="suc-khoe">
+                    <div class="category-title">Sức khỏe</div>
+                    
+                    <div class="article">
+                        <div class="article-text">
+                            <h3 class="article-title">10 lời khuyên trong dinh dưỡng</h3>
+                            <p class="article-desc">Cơ thể chúng ta cần nhiều chất dinh dưỡng từ nhiều nguồn lương thực khác nhau...</p>
+                            <div class="back-to-top"><a href="#top">Về đầu trang</a></div>
+                        </div>
+                        <div class="article-img">
+                            <img src="Gui_SV_BTTH/Anh/Bai08/Suc_khoe_03.jpg" alt="Dinh dưỡng">
+                        </div>
+                    </div>
+
+                    <div class="article">
+                        <div class="article-text">
+                            <h3 class="article-title">Làm sao để bỏ thuốc lá?</h3>
+                            <p class="article-desc">Sức khoẻ của chính bạn. Không hút thuốc lá tức là giảm thiểu đáng kể rủi ro mắc các loại bệnh ung thư...</p>
+                            <div class="back-to-top"><a href="#top">Về đầu trang</a></div>
+                        </div>
+                        <div class="article-img">
+                            <img src="Gui_SV_BTTH/Anh/Bai08/nosmoke.jpg" alt="Bỏ thuốc lá">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-block" id="am-thuc">
+                    <div class="category-title">Ẩm thực</div>
+                    
+                    <div class="article">
+                        <div class="article-text">
+                            <h3 class="article-title">Các món ăn dân dã</h3>
+                            <p class="article-desc">Các món ăn mới trong tuần · Chuyên mục dạy nấu ăn · Món ngon Hà Nội · Các món ăn dân dã ở miền Tây.</p>
+                            <div class="back-to-top"><a href="#top">Về đầu trang</a></div>
+                        </div>
+                        <div class="article-img">
+                            <img src="Gui_SV_BTTH/Anh/Bai08/Am_thuc.jpg" alt="Ẩm thực">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-block" id="am-nhac">
+                    <div class="category-title">Âm nhạc</div>
+                    
+                    <div class="article">
+                        <div class="article-text">
+                            <h3 class="article-title">Nhạc thiếu nhi</h3>
+                            <p class="article-desc">Nắng sân trường · Mẹ yêu không nào · Ba bà đi bán lợn con.</p>
+                            <div class="back-to-top"><a href="#top">Về đầu trang</a></div>
+                        </div>
+                        <div class="article-img">
+                            <img src="Gui_SV_BTTH/Anh/Bai08/nhac_thieu_nhi.jpg" alt="Nhạc thiếu nhi">
+                        </div>
+                    </div>
+
+                    <div class="article">
+                        <div class="article-text">
+                            <h3 class="article-title">Dân ca</h3>
+                            <p class="article-desc">Bèo dạt mây trôi · Mười thương · Lý cây bông.</p>
+                            <div class="back-to-top"><a href="#top">Về đầu trang</a></div>
+                        </div>
+                        <div class="article-img">
+                            <img src="Gui_SV_BTTH/Anh/Bai08/Nhac_dan_ca.jpg" alt="Dân ca">
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

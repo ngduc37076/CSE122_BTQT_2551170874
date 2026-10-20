@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 18 - Bông điên điển, món ngon mùa nước nổi</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fffdf5;
+      color: #212121;
+      font-family: "Times New Roman", "Noto Serif", serif;
+      line-height: 1.7;
+      padding: 34px 18px 48px;
+    }
+
+    article {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    article > header h1 {
+      color: #E65100;
+      font-size: 44px;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+
+    article > header p {
+      color: #E65100;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .flower {
+      float: right;
+      width: 46%;
+      max-width: 320px;
+      margin: 4px 0 18px 26px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(33, 33, 33, .18);
+    }
+
+    article section p {
+      margin-bottom: 18px;
+      text-align: justify;
+      font-size: 19px;
+    }
+
+    p.drop-cap::first-letter {
+      color: #E65100;
+      font-size: 74px;
+      font-weight: 700;
+      float: left;
+      line-height: .8;
+      margin: 6px 12px 0 0;
+    }
+
+    .flavors {
+      clear: both;
+      border: 2px solid #2E7D32;
+      background: #f4fbf4;
+      border-radius: 12px;
+      padding: 22px 26px 26px;
+      margin-top: 26px;
+    }
+
+    .flavors h2 {
+      color: #2E7D32;
+      font-style: italic;
+      font-size: 26px;
+      margin-bottom: 14px;
+    }
+
+    .flavors ul {
+      list-style: none;
+      columns: 2;
+      column-gap: 40px;
+    }
+
+    .flavors li {
+      margin-bottom: 10px;
+      padding-left: 22px;
+      font-size: 18px;
+      break-inside: avoid;
+      background: url("Anh/Bai18/icon_list_c.gif") no-repeat left 6px;
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 26px auto 0;
+      color: #8d8d8d;
+      font-size: 14px;
+      border-top: 1px solid #e8e2d4;
+      padding-top: 12px;
+    }
+
+    @media (max-width: 640px) {
+      article > header h1 { font-size: 32px; }
+      .flower { float: none; width: 100%; max-width: none; margin: 0 0 18px; }
+      p.drop-cap::first-letter { font-size: 54px; }
+      .flavors ul { columns: 1; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <article>
+
+    <header>
+      <h1>Bông điên điển</h1>
+      <p>Món ngon mùa nước nổi</p>
+    </header>
+
+    <section>
+
+      <img class="flower" src="Anh/Bai18/Diendien.jpg" alt="Bông điên điển vàng rực trên cành bên bờ sông">
+
+      <p class="drop-cap">Mỗi năm đầu mùa nước nổi, những cây điên điển bên bờ sông, bờ rạch lại trổ hoa vàng rực giữa vùng lũ Đồng bằng sông Cửu Long.</p>
+
+      <p>Bông điên điển được dùng làm dưa, xào tép, nhúng lẩu cá linh hoặc ăn sống kèm bông súng.</p>
+
+    </section>
+
+    <section class="flavors">
+
+      <h2>Hương vị miền Nam</h2>
+
+      <ul>
+        <li>Bánh tráng Mỹ Lồng</li>
+        <li>Dồi lươn rim nước cốt dừa</li>
+        <li>Bún mắm</li>
+        <li>Bún nước lèo Sóc Trăng</li>
+        <li>Nem lai Vung</li>
+        <li>Cốm dẹp</li>
+        <li>Bưởi Tân Triều</li>
+      </ul>
+
+    </section>
+
+  </article>
+
+  <footer>Bài 18 - Lập trình Web: bố cục chữ và ảnh với CSS3</footer>
+
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 24 - Bảng giá 3 gói (Pricing)</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .intro h1 {
+      font-size: 34px;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: #64748b;
+      font-size: 16px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .plan {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, .06);
+      padding: 28px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .plan:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, .14);
+    }
+
+    .hot {
+      border: 2px solid #4f46e5;
+      transform: translateY(-14px);
+      box-shadow: 0 22px 45px rgba(79, 70, 229, .28);
+      padding: 40px 24px;
+    }
+
+    .hot:hover {
+      transform: translateY(-20px);
+    }
+
+    .tag {
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      align-self: center;
+      margin-bottom: 16px;
+    }
+
+    .name {
+      font-size: 22px;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      color: #1e293b;
+      font-weight: 800;
+      font-size: 44px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .price .unit {
+      font-size: 15px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .perks {
+      list-style: none;
+      margin: 0 0 24px;
+      flex-grow: 1;
+    }
+
+    .perks li {
+      color: #334155;
+      font-size: 16px;
+      padding: 7px 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .perks li:last-child {
+      border-bottom: 0;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #1e293b;
+      transition: background-color .25s ease, color .25s ease, transform .25s ease;
+    }
+
+    .btn:hover {
+      background: #e2e8f0;
+      transform: translateY(-2px);
+    }
+
+    .hot .btn {
+      background: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+    }
+
+    .hot .btn:hover {
+      background: #4338ca;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      margin-top: auto;
+      padding-top: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .plans {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+      }
+
+      .hot {
+        transform: none;
+        padding: 28px 24px;
+      }
+
+      .hot:hover {
+        transform: translateY(-6px);
+      }
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 24px 14px;
+      }
+
+      .intro h1 {
+        font-size: 26px;
+      }
+
+      .price {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="intro">
+    <h1>Bảng giá khoá học</h1>
+    <p>Chọn gói phù hợp — hiệu ứng chuyển động và làm nổi bật gói phổ biến.</p>
+  </header>
+
+  <main class="plans">
+
+    <section class="plan">
+      <span class="tag">Cơ bản</span>
+      <h2 class="name">Starter</h2>
+      <p class="price">0 <span class="unit">đ</span></p>
+      <ul class="perks">
+        <li>12 bài HTML/CSS</li>
+        <li>Video hướng dẫn</li>
+        <li>Hỗ trợ qua email</li>
+        <li>Cộng đồng học viên</li>
+      </ul>
+      <button type="button" class="btn">Bắt đầu</button>
+    </section>
+
+    <section class="plan hot">
+      <span class="tag">Phổ biến nhất</span>
+      <h2 class="name">Pro</h2>
+      <p class="price">499 <span class="unit">k/tháng</span></p>
+      <ul class="perks">
+        <li>30 bài HTML/CSS/JS</li>
+        <li>Bootstrap 5</li>
+        <li>Chấm bài + phản hồi</li>
+        <li>Hỗ trợ 1-1</li>
+        <li>Đề tài tốt nghiệp</li>
+      </ul>
+      <button type="button" class="btn">Đăng ký ngay</button>
+    </section>
+
+    <section class="plan">
+      <span class="tag">Nâng cao</span>
+      <h2 class="name">Team</h2>
+      <p class="price">1.2 <span class="unit">tr/tháng</span></p>
+      <ul class="perks">
+        <li>Mọi quyền lợi gói Pro</li>
+        <li>Dự án nhóm</li>
+        <li>Mentor riêng</li>
+        <li>Báo cáo tiến độ hàng tuần</li>
+      </ul>
+      <button type="button" class="btn">Liên hệ</button>
+    </section>
+
+  </main>
+
+  <footer>
+    © CSE.TLU 
+  </footer>
+
+</body>
+</html>

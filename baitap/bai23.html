@@ -1,0 +1,173 @@
+<!DOCTYPE html> <!-- Khai báo chuẩn HTML5 -->
+<html lang="vi"> <!-- Ngôn ngữ trang là tiếng Việt -->
+
+<head> <!-- Phần khai báo của trang -->
+  <meta charset="UTF-8"> <!-- UTF-8 để tiếng Việt không bị lỗi dấu -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Co giãn theo màn hình điện thoại -->
+  <title>Chế độ Sáng / Tối (CSS Variables + JS)</title> <!-- Tiêu đề tab trình duyệt -->
+
+  <style> <!-- Toàn bộ giao diện dùng biến CSS, không ghi màu trực tiếp -->
+
+    :root { /* Chế độ SÁNG: mọi màu khai báo tập trung ở đây */
+      --nen: #f1f5f9; /* Màu nền trang sáng */
+      --chu: #0f172a; /* Màu chữ chính */
+      --the: #ffffff; /* Nền thẻ thông tin */
+      --vien: #e2e8f0; /* Viền thẻ thông tin */
+      --nhan: #2563eb; /* Màu tiêu đề thẻ (xanh lam) */
+      --phu: #64748b; /* Màu chữ phụ ở cuối trang */
+    }
+
+    .toi { /* Chế độ TỐI: ghi đè đúng các biến trên bằng class .toi */
+      --nen: #0f172a; /* Nền tối #0f172a theo đề bài */
+      --chu: #e2e8f0; /* Chữ sáng #e2e8f0 theo đề bài */
+      --the: #1e293b; /* Thẻ tối hơn nền một bậc */
+      --vien: #334155; /* Viền thẻ trên nền tối */
+      --nhan: #60a5fa; /* Tiêu đề thẻ xanh nhạt */
+      --phu: #94a3b8; /* Chữ phụ xám xanh */
+    }
+
+    * { /* Quy tắc chung cho mọi phần tử */
+      margin: 0; /* Xóa lề mặc định */
+      padding: 0; /* Xóa đệm mặc định */
+      box-sizing: border-box; /* Tính bề ngang gồm cả padding và viền */
+    }
+
+    body { /* Thân trang */
+      font-family: "Segoe UI", Arial, sans-serif; /* Bộ chữ hệ thống */
+      background: var(--nen); /* Nền lấy từ biến --nen */
+      color: var(--chu); /* Chữ lấy từ biến --chu */
+      max-width: 760px; /* Giới hạn bề ngang nội dung */
+      margin: 0 auto; /* Căn giữa trang */
+      padding: 32px 20px; /* Đệm quanh nội dung */
+      transition: background .4s, color .4s; /* Màu nền và chữ chuyển mượt */
+    }
+
+    header { /* Hàng trên cùng: tiêu đề trái, nút gạt phải */
+      display: flex; /* Flexbox để đặt tiêu đề và nút cùng hàng */
+      justify-content: space-between; /* Đẩy hai đối tượng sang hai đầu */
+      align-items: center; /* Căn giữa theo chiều dọc */
+      margin-bottom: 24px; /* Khoảng cách tới cụm thẻ */
+    }
+
+    h1 { /* Tiêu đề "Chế độ Tối / Sáng" */
+      font-size: 26px; /* Cỡ chữ tiêu đề */
+      color: var(--chu); /* Đổi theo theme nhờ biến --chu */
+    }
+
+    .nut-gat { /* Nút gạt dạng viên thuốc */
+      width: 62px; /* Bề ngang nút */
+      height: 30px; /* Chiều cao nút */
+      border: none; /* Không viền */
+      border-radius: 15px; /* Bo tròn hai đầu */
+      background: #2563eb; /* Nền xanh #2563eb theo gợi ý */
+      position: relative; /* Làm mốc cho viên bi trượt */
+      cursor: pointer; /* Con trỏ hình bàn tay khi rê vào */
+      transition: background .4s; /* Đổi màu mượt */
+    }
+
+    .bi { /* Viên bi tròn bên trong nút gạt */
+      position: absolute; /* Định vị trong nút */
+      top: 3px; /* Cách đỉnh 3px */
+      left: 3px; /* Cách trái 3px khi ở chế độ sáng */
+      width: 24px; /* Đường kính bi */
+      height: 24px; /* Đường kính bi */
+      border-radius: 50%; /* Thành hình tròn */
+      background: #60a5fa; /* Màu nhấn #60a5fa theo gợi ý */
+      transition: transform .4s; /* Trượt mượt khi đổi chế độ */
+    }
+
+    .toi .bi { /* Khi bật chế độ tối */
+      transform: translateX(32px); /* Viền bi trượt sang phải */
+    }
+
+    .ds-the { /* Vùng chứa các thẻ thông tin */
+      display: grid; /* Dùng CSS Grid */
+      gap: 16px; /* Khoảng cách giữa các thẻ */
+    }
+
+    .the { /* Một thẻ thông tin */
+      background: var(--the); /* Nền thẻ từ biến --the */
+      border: 1px solid var(--vien); /* Viền thẻ từ biến --vien */
+      border-radius: 10px; /* Bo góc 10px đúng yêu cầu */
+      padding: 18px; /* Đệm trong thẻ */
+      transition: background .4s, border-color .4s; /* Thẻ cũng đổi màu mượt */
+    }
+
+    .the h2 { /* Tiêu đề trong thẻ */
+      font-size: 17px; /* Cỡ chữ tiêu đề thẻ */
+      color: var(--nhan); /* Màu từ biến --nhan */
+      margin-bottom: 8px; /* Giãn cách với mô tả */
+    }
+
+    .the p { /* Dòng mô tả trong thẻ */
+      font-size: 15px; /* Cỡ chữ mô tả */
+      line-height: 1.6; /* Giãn dòng dễ đọc */
+    }
+
+    code { /* Các đoạn :root, .toi, <body>, transition trong mô tả */
+      font-family: Consolas, monospace; /* Font code */
+      background: rgba(128, 128, 128, .18); /* Nền xám mờ dùng được cho cả hai chế độ */
+      padding: 1px 6px; /* Đệm nhỏ quanh đoạn code */
+      border-radius: 4px; /* Bo góc nhẹ */
+    }
+
+    footer { /* Dòng trạng thái cuối trang */
+      margin-top: 22px; /* Cách cụm thẻ một khoảng */
+      font-size: 14px; /* Chữ nhỏ */
+      color: var(--phu); /* Màu phụ từ biến --phu */
+    }
+
+    @media (max-width: 480px) { /* Màn hình điện thoại */
+      header { flex-direction: column; align-items: flex-start; gap: 12px; } /* Tiêu đề và nút gạt xếp dọc */
+    }
+
+  </style>
+</head>
+
+<body class="toi"> <!-- Mở trang ở chế độ TỐI đúng như hình minh hoạ -->
+
+  <header> <!-- Hàng tiêu đề và công tắc -->
+    <h1>Chế độ Tối / Sáng</h1> <!-- Nguyên văn tiêu đề trong hình minh hoạ -->
+    <button id="nutGat" class="nut-gat" aria-label="Chuyển chế độ sáng tối"> <!-- Nút gạt, gắn id để JS bắt sự kiện -->
+      <span class="bi"></span> <!-- Viên bi trượt -->
+    </button>
+  </header>
+
+  <main class="ds-the"> <!-- Vùng "vài thẻ thông tin" mà đề bài yêu cầu -->
+
+    <section class="the"> <!-- Thẻ 1 -->
+      <h2>Biến CSS (CSS Variables)</h2> <!-- Nguyên văn tiêu đề thẻ 1 -->
+      <p>Toàn bộ màu sắc được khai báo trong <code>:root</code> và ghi đè bằng class <code>.toi</code>.</p> <!-- Nguyên văn mô tả thẻ 1 -->
+    </section>
+
+    <section class="the"> <!-- Thẻ 2 -->
+      <h2>Chuyển đổi giao diện JavaScript</h2> <!-- Nguyên văn tiêu đề thẻ 2 -->
+      <p>Nút bật/tắt thêm class <code>.toi</code> lên <code>&lt;body&gt;</code> &mdash; mọi phần tử đổi màu.</p> <!-- Nguyên văn mô tả thẻ 2 -->
+    </section>
+
+    <section class="the"> <!-- Thẻ 3 -->
+      <h2>Chuyển màu mượt</h2> <!-- Nguyên văn tiêu đề thẻ 3 -->
+      <p>Dùng <code>transition</code> để màu nền và chữ chuyển dần, không bị giật.</p> <!-- Nguyên văn mô tả thẻ 3 -->
+    </section>
+
+  </main>
+
+  <footer id="trangThai">Đây là giao diện ở chế độ TỐI (đang bật).</footer> <!-- Dòng trạng thái, JS cập nhật khi gạt -->
+
+  <script> <!-- Phần JavaScript đổi chế độ Sáng / Tối -->
+
+    var nutGat = document.getElementById('nutGat'); // Lấy nút gạt theo id
+    var trangThai = document.getElementById('trangThai'); // Lấy dòng trạng thái cuối trang
+
+    nutGat.addEventListener('click', function () { // Bấm nút gạt thì đổi giao diện ngay
+      document.body.classList.toggle('toi'); // Thêm hoặc bớt class .toi trên <body>
+      var dangToi = document.body.classList.contains('toi'); // Đọc lại trạng thái sau khi toggle
+      trangThai.textContent = dangToi // Gán câu trạng thái tương ứng
+        ? 'Đây là giao diện ở chế độ TỐI (đang bật).' // Câu khi đang ở chế độ tối
+        : 'Đây là giao diện ở chế độ SÁNG (đang tắt).'; // Câu khi đang ở chế độ sáng
+    }); // Kết thúc hàm xử lý click
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 20 — Hiệu ứng ảnh với CSS Filter</title>
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; }
+    body { 
+      background: #0d1117; 
+      color: #e6edf3; 
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      padding: 30px 10px; }
+    #khung-anh { 
+      background: #1c2226; 
+      border-radius: 12px;
+      padding: 25px 40px; 
+      text-align: center; 
+      max-width: 90%; }
+    #hoa-hong { 
+      width: 320px; 
+      max-width: 100%; 
+      height: auto; 
+      border-radius: 8px;
+      transition: filter .4s ease, transform .4s ease, opacity .4s ease;
+      filter: grayscale(1);  }
+    #dong-chu { 
+      margin-top: 15px; 
+      font-size: 34px; 
+      font-style: italic;
+      font-weight: bold;
+      background: linear-gradient(90deg, #f5d76e, #d4a017);
+      -webkit-background-clip: text; 
+      background-clip: text;
+      color: transparent;  }
+    #thanh-nut { 
+      background: #232b30; 
+      border-radius: 12px;
+      margin-top: 30px; 
+      padding: 14px; 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 10px; 
+      justify-content: center;
+      max-width: 96%; }
+    #thanh-nut button { 
+      background: #2b353c; 
+      color: #e6edf3; 
+      border: 1px solid #3d4a52;
+      padding: 10px 16px; 
+      border-radius: 8px; 
+      font-size: 16px; 
+      cursor: pointer;
+      transition: background .2s, transform .2s;  }
+    #thanh-nut button:hover { 
+      background: #3d4a52; 
+      transform: translateY(-2px);  }
+    #thanh-nut button.active { 
+      background: #0d6efd; 
+      color: #fff; 
+      font-weight: bold;
+      border-color: #0d6efd; }
+    .ef-gray   { filter: grayscale(1); }
+    .ef-xray   { filter: grayscale(1) invert(1); }
+    .ef-invert { filter: invert(1); }
+    .ef-fliph  { filter: none; transform: scaleX(-1); }
+    .ef-flipv  { filter: none; transform: scaleY(-1); }
+    .ef-glow   { filter: brightness(1.35) drop-shadow(0 0 18px rgba(255, 244, 179, .95)); }
+    .ef-shadow { filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, .6)); }
+    .ef-bold   { filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, .9)); }
+    .ef-drop   { filter: drop-shadow(12px 12px 0 rgba(13, 110, 253, .65)); }
+    .ef-blur   { filter: blur(3px); }
+    .ef-wave   { filter: url(#wave); }
+    .ef-mask   { filter: contrast(1.7) sepia(1); }
+    .ef-alpha  { filter: none; opacity: .4; }
+    footer { margin-top: 25px; color: #8b949e; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="wave">
+      <feTurbulence type="fractalNoise" baseFrequency="0.01 0.06" numOctaves="3" result="noise">
+        <animate attributeName="baseFrequency" dur="6s" values="0.01 0.06;0.02 0.09;0.01 0.06" repeatCount="indefinite">
+      </feDisplacementMap>
+    </filter>
+  </svg>
+
+  <header id="khung-anh">
+    <img id="hoa-hong" class="ef-gray" src="Anh/Bai20/hoahong.gif" alt="Hoa hồng">
+    <p id="dong-chu">Special For You</p>
+  </header>
+
+  <nav id="thanh-nut">
+    <button data-ef="gray" class="active">Gray</button>
+    <button data-ef="xray">Xray</button>
+    <button data-ef="invert">Invert</button>
+    <button data-ef="fliph">FlipH</button>
+    <button data-ef="flipv">FlipV</button>
+    <button data-ef="glow">Glow</button>
+    <button data-ef="shadow">Shadow</button>
+    <button data-ef="bold">Bold Shadow</button>
+    <button data-ef="drop">DropShadow</button>
+    <button data-ef="blur">Blur</button>
+    <button data-ef="wave">Wave</button>
+    <button data-ef="mask">Mask</button>
+    <button data-ef="alpha">Alpha</button>
+  </nav>
+
+  <footer>Bài 20 — Lọc CSS (filter) và transform — CSE.TLU</footer>
+
+  <script>
+    var anh = document.getElementById('hoa-hong');
+    var thanhNut = document.getElementById('thanh-nut');
+    var nutDangChon = document.querySelector('#thanh-nut button.active');
+
+    function apHieuUng(ten) {
+      anh.className = 'ef-' + ten;
+      nutDangChon.classList.remove('active');
+      nutDangChon = document.querySelector('[data-ef="' + ten + '"]');
+      nutDangChon.classList.add('active');
+    }
+
+    thanhNut.addEventListener('click', function (e) {
+      if (e.target.tagName === 'BUTTON') {
+        apHieuUng(e.target.dataset.ef);
+      }
+    });
+  </script>
+</body>
+</html>

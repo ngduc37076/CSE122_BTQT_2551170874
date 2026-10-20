@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 21 — Bố cục trang 4 vùng (CSS Grid)</title>
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #212121;
+      background: #fafafa;
+      display: grid;
+      grid-template-areas:
+          "banner banner banner"
+          "menu noi-dung quang-cao"
+          "footer footer footer";
+      grid-template-columns: 200px 1fr 160px;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+}
+    header { 
+      grid-area: banner;  
+      background: #C62828 url('Anh/Bai21/Nen_banner.jpg') center/cover no-repeat;
+      color: #fff; 
+      display: flex; 
+      align-items: center; 
+      gap: 15px; 
+      padding: 18px 20px;
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, .6);  
+    }
+    header img { 
+      width: 56px; 
+      height: 56px; 
+      object-fit: contain;  
+    }
+    nav { 
+      grid-area: menu;
+      background: linear-gradient(#C62828, #8E0000);
+      padding-top: 10px; 
+    }
+    nav a { 
+      display: block; 
+      color: #fff; 
+      text-decoration: none;
+      padding: 14px 16px; 
+      border-bottom: 1px solid rgba(255, 255, 255, .25);
+      font-size: 15px; 
+      transition: background .25s, padding-left .25s;  
+    }
+    nav a:hover { 
+      background: rgba(0, 0, 0, .3); 
+      padding-left: 24px;  
+    }
+    main { 
+      grid-area: noi-dung;
+      background: #fff; 
+      border: 1px solid #e0e0e0;
+      margin: 15px 0; 
+      padding: 20px; 
+    }
+    main h1{
+      color:red;
+    }
+    .hop-vang { 
+      background: #FFE082; 
+      border-radius: 10px;
+      padding: 12px 18px; 
+      margin: 15px 0 20px; 
+    }
+    .hop-vang a { 
+      color: #5d4037; 
+      text-decoration: none; 
+      margin-right: 22px;
+      font-weight: bold; 
+    }
+    .hop-vang a:hover { 
+      text-decoration: underline;  
+    }
+    section { 
+      border: 1px solid #e0e0e0; 
+      border-radius: 8px;
+      padding: 18px; 
+      margin-bottom: 18px; 
+    }
+    section .text-main{
+      text-align: center;
+    }
+    section p { 
+      line-height: 1.65;
+      margin-bottom: 8px; 
+    }
+    aside { 
+      grid-area: quang-cao;
+      padding: 15px 8px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px;  
+    }
+    aside img { 
+      width: 100%; 
+      border: 1px solid #e0e0e0; 
+      border-radius: 6px;  
+    }
+    footer {
+      grid-area: footer;
+      background: #8E0000;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+}
+    @media (max-width: 800px) {
+    body {
+        grid-template-areas:
+            "banner"
+            "menu"
+            "noi-dung"
+            "quang-cao"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        border-bottom: none;
+        border-right: 1px solid rgba(255, 255, 255, .25);
+    }
+
+    aside {
+        flex-direction: row;
+    }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Anh/Bai21/LogoTT.gif" alt="Logo">
+  </header>
+
+  <nav>
+    <a href="#html">Ngôn ngữ HTML</a>
+    <a href="#javascript">Ngôn ngữ JavaScript</a>
+    <a href="#doi-tuong">Các đối tượng trong JavaScript</a>
+    <a href="#css">CSS và bố cục hiện đại</a>
+  </nav>
+
+  <main>
+    <h1>Bài tập HTML cơ bản</h1>
+    <div class="hop-vang">
+      <a href="#html">Đảo chuỗi</a>
+      <a href="#javascript">Phân tích chuỗi</a>
+      <a href="#doi-tuong">Tìm và thay thế</a>
+    </div>
+    <section id="html">
+      <p>Thiết kế trang web có nội dung như sau:</p>
+      <p class="text-main">Trung Tâm Tin Học – ĐH KHTN. <br>Chào mừng các bạn đến với ngôn ngữ HTML.<br></p>
+    </section>
+  </main>
+
+  <aside>
+    <a href="#"><img src="Anh/Bai21/Qcao01.gif" alt="Quảng cáo 1"></a>
+    <a href="#"><img src="Anh/Bai21/Qcao02.gif" alt="Quảng cáo 2"></a>
+  </aside>
+
+  <footer>Bài 21 — Bố cục 4 vùng bằng CSS Grid — CSE.TLU</footer>
+</body>
+</html>

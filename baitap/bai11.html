@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thư viện ảnh</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing: border-box;
+    }
+    body{
+      background: #0f172a;
+      color:#e2e8f0;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 32px 24px 48px;
+    }
+    h1{
+      color:#e2e8f0 ;
+      text-align: center;
+      font-size: 32px;
+      margin-bottom:8px;
+    }
+    .intro{
+      text-align: center;
+      color:#cbd5e1;
+      font-size:15px;
+      margin-bottom:28px;
+    }
+    .gallery{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    figure{
+      background:#1e293b ;
+      border-radius: 10px;
+      overflow: hidden;
+      margin:0;
+    }
+    figure img{
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    figcaption{
+      padding: 10px 12px;
+      color:#cbd5e1 ;
+      font-size: 13px;
+    }
+    figure:hover{
+      outline: 2px solid #38bdf8;
+    }
+    @media (max-width: 900px){
+      .gallery{grid-template-columns: repeat(2,1fr);}
+    }
+    @media (max-width: 600px){
+      .gallery{grid-template-columns: 1fr;}
+      figure img{height: 180px;}
+    }
+  </style>
+</head>
+<body>
+   <h1>Thư viện ảnh Việt Nam</h1>
+   <p class="intro">
+    Bộ sưu tập 6 danh thắng tiêu biểu
+   </p>
+
+   <div class="gallery">
+    <figure>
+      <img src="Gui_SV_BTTH/Anh/Bai11/1-vinh-ha-long.jpg" alt="Vịnh Hạ Long">
+      <figcaption>Hình 1. Vịnh Hạ Long</figcaption>
+    </figure>
+
+     <figure>
+      <img src="Gui_SV_BTTH/Anh/Bai11/2-son-doong.jpg" alt="Hang Sơn Đoàng">
+      <figcaption>Hình 2. Hang Sơn Đoàng</figcaption>
+    </figure>
+
+     <figure>
+      <img src="Gui_SV_BTTH/Anh/Bai11/3-thac-ban-gioc.jpg" alt="Thác Bản Giốc">
+      <figcaption>Hình 3. Thác Bản Giốc</figcaption>
+    </figure>
+
+     <figure>
+      <img src="Gui_SV_BTTH/Anh/Bai11/4-fansipan.jpg" alt="Fansipan">
+      <figcaption>Hình 4. Fansipan</figcaption>
+    </figure>
+
+    <figure>
+      <img src="Gui_SV_BTTH/Anh/Bai11/5-mekong.jpg" alt="Đồng bằng Sông Cửu Long">
+      <figcaption>Hình 5. Đồng bằng Sông Cửu Long</figcaption>
+    </figure>
+
+    <figure>
+      <img src="Gui_SV_BTTH/Anh/Bai11/6-phong-nha.jpg" alt="Động Phong Nha">
+      <figcaption>Hình 6. Động Phong Nha</figcaption>
+    </figure>
+   </div>
+</body>
+</html>

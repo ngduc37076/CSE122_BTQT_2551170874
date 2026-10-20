@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công ty Hoa tươi Nhân Ái</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif; /* Phù hợp với font chữ kiểu truyền thống trong mẫu */
+            margin: 40px; /*khoảng cách lề xung quanh trang*/
+            color: #000;
+        }
+
+        /* Tiêu đề chính của công ty (Hồng đậm, căn giữa) */
+        h1.main-title {
+            color: #C2185B;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Bố cục 2 cột sử dụng Flexbox */
+        .container {
+            display: flex; /* Sử dụng Flexbox để tạo bố cục 2 cột */
+            align-items: flex-start; /* Căn chỉnh các cột theo đầu */
+            justify-content: center; /* Căn giữa các cột theo chiều ngang */
+            gap: 30px;/* Khoảng cách giữa 2 cột */
+            max-width: 750px;
+            margin: 0 auto;/* Căn giữa container trong trang */
+        }
+
+        /* Cột trái chứa ảnh hoa */
+        .col-left {
+            flex: 0 0 200px; /* Chiều rộng cố định cho cột trái */
+            text-align: center;/* Căn giữa hình ảnh trong cột trái */
+        }
+
+        .col-left img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Cột phải chứa nội dung thông tin */
+        .col-right {
+            flex: 1;
+        }
+
+        /* Tiêu đề các mục (1. Giới thiệu, 2. Liên hệ) có nền hồng, chữ đậm */
+        .section-title {
+            background-color: #FFC0CB;
+            color: #000;
+            font-size: 15px;
+            padding: 4px 10px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: bold;
+            display: inline-block;/* Để tiêu đề có nền hồng bao quanh chữ */
+        }
+
+        /* Danh sách mục 1: Kiểu hình vuông (square) */
+        ul.list-square {
+            list-style-type: square;/* Sử dụng kiểu danh sách hình vuông */
+            margin-top: 5px;
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        ul.list-square li {
+            margin-bottom: 6px;
+            line-height: 1.4;/* Tăng khoảng cách giữa các dòng trong danh sách */
+        }
+
+        /* Danh sách mục 2: Kiểu tròn rỗng (circle) */
+        ul.list-circle {
+            list-style-type: circle;
+            margin-top: 5px;
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        ul.list-circle li {
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        /* Dòng bản quyền ở cuối trang (Xanh lam, gạch chân, căn giữa) */
+        .footer {
+            text-align: center;/* Căn giữa dòng bản quyền */
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #0000EE;
+            text-decoration: underline;/* Gạch chân */
+            font-size: 14px;
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tiêu đề trang -->
+    <h1 class="main-title">Công ty Hoa tươi Nhân Ái</h1>
+
+    <div class="container">
+        <!-- Cột trái: Hình ảnh hoa hồng -->
+        <div class="col-left">
+            <!-- Đảm bảo bạn có thư mục 'Anh' chứa file 'Rose.gif' cùng cấp với file HTML này -->
+            <img src="Gui_SV_BTTH/Anh/Bai05/Rose.gif" alt="Hoa hồng">
+        </div>
+
+        <!-- Cột phải: Nội dung chi tiết -->
+        <div class="col-right">
+            <!-- Mục 1 -->
+            <div class="section-title">1. Giới thiệu</div>
+            <ul class="list-square">
+                <li>Thành lập ngày 25/05/2007</li>
+                <li>Chuyên cung cấp các loại hoa tươi</li>
+                <li>Có trên 20 cửa hàng bán lẻ tại TP.HCM</li>
+                <li>Nhận kết giỏ hoa theo yêu cầu của khách hàng</li>
+            </ul>
+
+            <!-- Mục 2 -->
+            <div class="section-title">2. Liên hệ</div>
+            <ul class="list-circle">
+                <li>Điện thoại: 84-08-8351056</li>
+                <li>Địa chỉ: 227 Nguyễn Văn Cừ, Quận 5, TP.HCM</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Dòng bản quyền -->
+    <div class="footer">
+        <a href="#">&copy; Copyright: Công ty Hoa tươi Nhân Ái</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 12 - In lịch</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #e9ecef url("Gui_SV_BTTH/Anh/Bai12/Nen.gif") repeat;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #212121;
+      padding: 32px 16px 48px;
+      min-height: 100vh;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .panel {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .18);
+      padding: 28px 24px 32px;
+    }
+
+    .lich {
+      border: 1px solid #ccc;
+      background: #FFFFFF;
+      border-radius: 12px;
+      text-align: center;
+      padding: 28px 16px;
+    }
+
+    .nam {
+      color: #C62828;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .thang {
+      color: #1565C0;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .ngay {
+      color: #C62828;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 8px 0;
+    }
+
+    .thu {
+      color: #1565C0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .loichao {
+      color: #C62828;
+      font-style: italic;
+      text-align: center;
+      font-size: 26px;
+      margin: 26px 0 30px;
+    }
+
+    form {
+      border: 2px solid #1565C0;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 18px;
+      flex: 1 1 140px;
+    }
+
+    input {
+      border: 1px solid #bdbdbd;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 18px;
+      text-align: center;
+      background: #FFFFFF;
+    }
+
+    input:focus {
+      outline: 2px solid #1565C0;
+    }
+
+    button {
+      background: #546e7a;
+      color: #FFFFFF;
+      border: 0;
+      border-radius: 8px;
+      padding: 14px 26px;
+      font-size: 18px;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    button:hover {
+      background: #37474f;
+    }
+
+    .ghi-chu {
+      text-align: center;
+      color: #616161;
+      font-size: 13px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 480px) {
+      .panel { padding: 18px 14px 22px; }
+      .ngay { font-size: 44px; }
+      .loichao { font-size: 20px; }
+      form { flex-direction: column; }
+      button { width: 100%; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="panel">
+    <h1 class="sr-only">Bài 12 - In lịch</h1>
+
+    <section class="lich" aria-live="polite">
+      <p class="nam" id="ketQuaNam">...</p>
+      <p class="thang" id="ketQuaThang">...</p>
+      <p class="ngay" id="ketQuaNgay">...</p>
+      <p class="thu" id="ketQuaThu">...</p>
+    </section>
+
+    <p class="loichao" id="ketQuaChao">Chào buổi sáng!</p>
+
+    <form id="formLich">
+      <label for="ngay">Ngày
+        <input type="number" id="ngay" name="ngay" min="1" max="31" value="24">
+      </label>
+
+      <label for="thang">Tháng
+        <input type="number" id="thang" name="thang" min="1" max="12" value="12">
+      </label>
+
+      <label for="nam">Năm
+        <input type="number" id="nam" name="nam" min="1900" max="2200" value="2026">
+      </label>
+
+      <button type="button" id="nutIn">In lịch</button>
+    </form>
+
+  </main>
+
+  <script>
+
+    const thuVN = ["Chủ nhật", "Thứ hai", "Thứ ba", "Thứ tư", "Thứ năm", "Thứ sáu", "Thứ bảy"];
+
+    function layThu(soNgay, soThang, soNam) {
+      const ngay = new Date(soNam, soThang - 1, soNgay);
+      return thuVN[ngay.getDay()];
+    }
+
+    function kiemTraNgay(soNgay, soThang, soNam) {
+      if (Number.isNaN(soNgay) || Number.isNaN(soThang) || Number.isNaN(soNam)) return false;
+      if (soThang < 1 || soThang > 12) return false;
+      const ngayThu = new Date(soNam, soThang - 1, soNgay);
+      return ngayThu.getDate() === soNgay && ngayThu.getMonth() + 1 === soThang && ngayThu.getFullYear() === soNam;
+    }
+
+    function loiChaoTheoGio() {
+      const gio = new Date().getHours();
+      if (gio < 12) return "Chào buổi sáng!";
+      if (gio < 13) return "Chào buổi trưa!";
+      if (gio < 18) return "Chào buổi chiều!";
+      return "Chào buổi tối!";
+    }
+
+    function inLich() {
+      const soNgay = parseInt(document.getElementById("ngay").value, 10);
+      const soThang = parseInt(document.getElementById("thang").value, 10);
+      const soNam = parseInt(document.getElementById("nam").value, 10);
+
+      if (!kiemTraNgay(soNgay, soThang, soNam)) {
+        document.getElementById("ketQuaChao").textContent = "Ngày tháng không hợp lệ!";
+        return;
+      }
+
+      const ngayDuLich = new Date(soNam, soThang - 1, soNgay);
+      document.getElementById("ketQuaNam").textContent = ngayDuLich.getFullYear();
+      document.getElementById("ketQuaThang").textContent = "Tháng " + (ngayDuLich.getMonth() + 1);
+      document.getElementById("ketQuaNgay").textContent = soNgay;
+      document.getElementById("ketQuaThu").textContent = layThu(soNgay, soThang, soNam);
+      document.getElementById("ketQuaChao").textContent = loiChaoTheoGio();
+    }
+
+    document.getElementById("nutIn").addEventListener("click", inLich);
+
+    document.getElementById("formLich").addEventListener("submit", function (e) {
+      e.preventDefault();
+      inLich();
+    });
+
+    const homNay = new Date();
+    document.getElementById("ngay").value = homNay.getDate();
+    document.getElementById("thang").value = homNay.getMonth() + 1;
+    document.getElementById("nam").value = homNay.getFullYear();
+    inLich();
+
+  </script>
+</body>
+</html>

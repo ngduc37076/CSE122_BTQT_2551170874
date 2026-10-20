@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chương trình khuyến mãi Double Rich</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 750px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Dải tiêu đề chính */
+        .title-main {
+            background-color: #C8102E;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 12px 0;
+        }
+
+        /* Dải tiêu đề phụ */
+        .title-sub {
+            background-color: #FBE3E8;
+            color: #C8102E;
+            text-align: center;
+            font-weight: bold;
+            font-size: 15px;
+            padding: 8px 0;
+        }
+
+        /* Khu vực nội dung chính */
+        .content-area {
+            padding: 20px;
+            overflow: hidden; /* Dùng để clear float cho container */
+        }
+
+        /*BỐ CỤC BẬC THANG BẰNG FLOAT */
+        /* 1. Cột phải: Được float sang phải, chứa vạch kẻ */
+        .col-right {
+            float: right;
+            width: 48%; /* Độ rộng cột phải */
+            box-sizing: border-box;
+            padding-left: 20px;
+            border-left: 1px solid #ccc; /* Vạch kẻ dọc chỉ xuất hiện ở cột này */
+        }
+
+        /* 2. Cột trái: Đặt clear: right để bắt đầu ngay bên dưới cột phải */
+        .col-left {
+            float: left;
+            width: 45%; /* Độ rộng cột trái hẹp hơn một chút để tạo khoảng cách ngang với vạch kẻ */
+            box-sizing: border-box;
+            padding-right: 10px;
+            clear: right; /* Thuộc tính then chốt: đẩy khối này xuống dưới khối float right */
+        }
+
+        /* Hình ảnh sản phẩm */
+        .product-image {
+            float: right;
+            width: 130px;
+            margin-left: 15px;
+         
+        }
+
+        /* Tiêu đề mục */
+        h3 {
+            color: #C8102E;
+            font-size: 14px;
+            margin: 0 0 8px 0;
+        }
+
+        h3::before {
+            content: "\25A1"; /* Unicode cho hình vuông rỗng*/
+            margin-right: 5px;
+        }
+
+        /* Danh sách nội dung */
+        ul {
+            margin: 0 0 15px 0;
+            padding-left: 18px;
+            color: #333333;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        li strong {
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="title-main">Công nghệ dầu gội dưỡng tóc mới</div>
+    <div class="title-sub">TỎA SÁNG CÙNG DOUBLE RICH</div>
+
+    <div class="content-area">
+        
+        <!-- TRONG HTML: Phải khai báo cột phải trước để nó nổi lên trên cùng bên phải -->
+        <div class="col-right">
+            <img src="Gui_SV_BTTH/Anh/Bai07/DoubleRich.jpg" alt="Sản phẩm Double Rich" class="product-image">
+
+            <h3>Sản phẩm khuyến mãi</h3>
+            <ul>
+                <li>Dầu gội Double Rich mới 200ml, 400ml có tem khuyến mãi.</li>
+            </ul>
+
+            <h3>Đối tượng tham gia</h3>
+            <ul>
+                <li>Áp dụng cho tất cả người tiêu dùng cuối cùng mua sản phẩm khuyến mãi.</li>
+                <li>Không áp dụng cho nhân viên, nhà phân phối, đại lý và các cá nhân kinh doanh sản phẩm của công ty.</li>
+            </ul>
+        </div>
+
+        <!-- Cột trái đặt sau, nhờ clear: right sẽ tự động lấp vào khoảng trống bên dưới cột phải -->
+        <div class="col-left">
+            <h3>Cách thức nhận giải</h3>
+            <ul>
+                <li><strong>Giải khuyến khích:</strong> đổi quà tại cửa hàng bán lẻ toàn quốc, từ 15/06/2005 đến 17h ngày 12/08/2005.</li>
+                <li><strong>Giải đặc biệt, nhất, nhì:</strong> cắt mã vạch trên chai dầu gội, gửi kèm phiếu trúng thưởng về văn phòng công ty trước ngày 31/07/2005 (theo dấu bưu điện).</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

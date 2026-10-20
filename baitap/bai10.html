@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang liên hệ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 650px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background-color: #0f766e;
+            color: #FFFFFF;
+            padding: 25px 30px;
+        }
+
+        .form-header h2 {
+            margin: 0 0 5px 0;
+            font-size: 22px;
+        }
+
+        .form-header p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.9; /* Giảm độ đậm của chữ để tạo sự nhẹ nhàng */
+        }
+
+        .contact-form {
+            padding: 30px;
+        }
+
+        .form-row {
+            display: grid;/* Sử dụng grid để tạo 2 cột */
+            grid-template-columns: 1fr 1fr;/* Hai cột bằng nhau */
+            gap: 20px;
+            margin-bottom: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;/* Sắp xếp label và input theo chiều dọc */
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;/* Khi cần, có thể cho một ô chiếm cả 2 cột */
+        }
+
+        label {
+            color: #334155;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],/* Thêm text vào danh sách */
+        input[type="email"],/* Thêm email vào danh sách */
+        select,/* Thêm select vào danh sách */
+        textarea {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;/* Giữ nguyên font của body */
+            outline: none; /* Loại bỏ viền mặc định khi focus */
+            box-sizing: border-box;
+            transition: border-color 0.2s;/* Hiệu ứng chuyển màu viền khi focus */
+        }
+
+        input[type="text"]:focus,/
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #0f766e;
+        }
+
+        /* Xử lý hàng cuối cùng chứa Nút bấm và Checkbox */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;/* Hai cột: Nút bấm bên trái, Checkbox bên phải */
+            gap: 20px;
+            margin-top: 15px;
+            align-items: flex-end; /* Căn đáy để nút bấm thẳng hàng với chữ của checkbox */
+        }
+
+        /* Hai nút bấm bên trái */
+        .form-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #0f766e;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d645c;
+        }
+
+        .btn-secondary {
+            background-color: #e2e8f0; 
+            color: #334155;
+        }
+
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+        }
+
+        /* Checkbox bên phải */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;/* Căn chữ của checkbox với đầu của ô checkbox */
+            gap: 10px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            margin-top: 2px;
+            cursor: pointer;/* Thêm con trỏ khi hover vào checkbox */
+        }
+
+        .checkbox-wrapper label {
+            font-weight: normal;/* Giữ chữ bình thường, không in đậm */
+            color: #475569;
+            font-size: 13px;
+            line-height: 1.4;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Liên hệ với chúng tôi</h2>
+            <p>Vui lòng điền thông tin bên dưới, chúng tôi sẽ phản hồi trong 24 giờ.</p>
+        </div>
+        
+        <form action="#" class="contact-form">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullname">Họ và tên</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn An">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="an.nv@tlu.edu.vn">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="text" id="phone" name="phone" placeholder="0987 654 321">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Chủ đề</label>
+                    <select id="subject" name="subject">
+                        <option value="khoa-hoc">Hỏi về khoá học</option>
+                        <option value="thuc-tap">Thực tập</option>
+                        <option value="khac">Khác</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="message">Nội dung</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Em muốn hỏi về lịch nộp bài tập môn Lập trình Web ạ."></textarea>
+                </div>
+            </div>
+
+            <!-- Hàng cuối cùng: Nút bấm (Trái) & Checkbox (Phải) -->
+            <div class="bottom-row">
+                
+                <!-- Hai nút gửi và nhập lại -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
+                    <button type="reset" class="btn btn-secondary">Nhập lại</button>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="agree" name="agree" checked>
+                    <label for="agree">Tôi đồng ý nhận email<br>phản hồi.</label>
+                </div>
+                
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>

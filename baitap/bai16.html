@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 16 - Danh sách việc cần làm</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      width: 600px;
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .15);
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: #6d28d9;
+      color: #FFFFFF;
+      padding: 26px 30px;
+    }
+
+    .card-header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .card-header p {
+      font-size: 16px;
+      opacity: .9;
+    }
+
+    .card-body {
+      padding: 26px 30px 22px;
+    }
+
+    .add-row {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid #ede9fe;
+    }
+
+    #todo-input {
+      flex: 1;
+      border: 1px solid #a78bfa;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 17px;
+    }
+
+    #todo-input:focus {
+      outline: 2px solid #6d28d9;
+    }
+
+    .btn-add {
+      background: #6d28d9;
+      color: #FFFFFF;
+      border: 0;
+      border-radius: 10px;
+      padding: 14px 26px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-add:hover {
+      background: #5b21b6;
+    }
+
+    .todo-list {
+      list-style: none;
+      padding-top: 6px;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px dashed #ede9fe;
+    }
+
+    .todo-check {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      border: 2px solid #a78bfa;
+      border-radius: 6px;
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+    }
+
+    .todo-check:checked {
+      background: #6d28d9;
+      border-color: #6d28d9;
+    }
+
+    .todo-check:checked::after {
+      content: "";
+      width: 6px;
+      height: 11px;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .todo-text {
+      flex: 1;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    .todo-item.done .todo-text {
+      color: #6d28d9;
+      text-decoration: line-through;
+    }
+
+    .btn-delete {
+      background: #fde2e2;
+      color: #b91c1c;
+      border: 0;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .btn-delete:hover {
+      background: #fecaca;
+    }
+
+    .count {
+      margin-top: 18px;
+      color: #475569;
+      font-size: 16px;
+    }
+
+    footer {
+      padding: 12px 30px 18px;
+      color: #94a3b8;
+      font-size: 13px;
+      border-top: 1px solid #ede9fe;
+    }
+
+    @media (max-width: 480px) {
+      .card-header h1 { font-size: 24px; }
+      .add-row { flex-direction: column; }
+      .btn-add { width: 100%; }
+      .todo-text { font-size: 15px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <header class="card-header">
+      <h1>Danh sách việc cần làm</h1>
+      <p>Thêm việc mới, đánh dấu hoàn thành hoặc xoá — tất cả bằng JavaScript.</p>
+    </header>
+
+    <main class="card-body">
+
+      <form id="todo-form" class="add-row">
+        <input id="todo-input" type="text" placeholder="Thêm việc mới..." autocomplete="off">
+        <button type="submit" class="btn-add">Thêm</button>
+      </form>
+
+      <ul id="todo-list" class="todo-list"></ul>
+      <p id="todo-count" class="count"></p>
+
+    </main>
+
+    <footer>Bài 16 - Lập trình Web: thao tác DOM với JavaScript</footer>
+
+  </div>
+
+  <script>
+
+    "use strict";
+
+    var STORAGE_KEY = "bai16-todos";
+
+    var todos = [
+      { id: 1, text: "Đọc chương HTML5 cơ bản", done: true },
+      { id: 2, text: "Làm bài tập CSS Grid", done: false },
+      { id: 3, text: "Quay video OBS nộp bài", done: false }
+    ];
+
+    function loadTodos() {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) { return; }
+      try {
+        todos = JSON.parse(saved);
+      } catch (e) {
+        todos = [];
+      }
+    }
+
+    function saveTodos() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+    }
+
+    function nextId() {
+      var max = 0;
+      todos.forEach(function (t) {
+        if (t.id > max) { max = t.id; }
+      });
+      return max + 1;
+    }
+
+    function addTodo(text) {
+      var value = text.trim();
+      if (value === "") { return false; }
+      todos.push({ id: nextId(), text: value, done: false });
+      saveTodos();
+      return true;
+    }
+
+    function toggleTodo(id) {
+      todos.forEach(function (t) {
+        if (t.id === id) { t.done = !t.done; }
+      });
+      saveTodos();
+    }
+
+    function removeTodo(id) {
+      todos = todos.filter(function (t) {
+        return t.id !== id;
+      });
+      saveTodos();
+    }
+
+    function createItem(todo) {
+      var li = document.createElement("li");
+      li.className = "todo-item" + (todo.done ? " done" : "");
+
+      var check = document.createElement("input");
+      check.type = "checkbox";
+      check.className = "todo-check";
+      check.checked = todo.done;
+      check.addEventListener("change", function () {
+        toggleTodo(todo.id);
+        render();
+      });
+
+      var span = document.createElement("span");
+      span.className = "todo-text";
+      span.textContent = todo.text;
+      span.addEventListener("click", function () {
+        toggleTodo(todo.id);
+        render();
+      });
+
+      var del = document.createElement("button");
+      del.type = "button";
+      del.className = "btn-delete";
+      del.textContent = "Xoá";
+      del.addEventListener("click", function () {
+        removeTodo(todo.id);
+        render();
+      });
+
+      li.appendChild(check);
+      li.appendChild(span);
+      li.appendChild(del);
+      return li;
+    }
+
+    function render() {
+      var list = document.getElementById("todo-list");
+      list.textContent = "";
+      todos.forEach(function (t) {
+        list.appendChild(createItem(t));
+      });
+
+      var remaining = todos.filter(function (t) {
+        return t.done === false;
+      }).length;
+
+      var count = document.getElementById("todo-count");
+      count.textContent = "Còn " + remaining + " việc chưa hoàn thành";
+    }
+
+    var form = document.getElementById("todo-form");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var input = document.getElementById("todo-input");
+      if (addTodo(input.value)) {
+        input.value = "";
+        input.focus();
+        render();
+      } else {
+        input.focus();
+      }
+    });
+
+    loadTodos();
+    render();
+
+  </script>
+</body>
+</html>

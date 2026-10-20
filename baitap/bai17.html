@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 17 - Kiểm tra biểu mẫu bằng JavaScript</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fdf3e7;
+      color: #1f2937;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      box-shadow: 0 10px 28px rgba(194, 65, 12, .10);
+      width: 620px;
+      max-width: 100%;
+      padding: 30px 34px 34px;
+    }
+
+    .card h1 {
+      color: #c2410c;
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 2px solid #d1d5db;
+      border-radius: 10px;
+      background: #FFFFFF;
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: #c2410c;
+    }
+
+    .field input.invalid {
+      border-color: #dc2626;
+      background: #fef2f2;
+    }
+
+    .field input.valid {
+      border-color: #16a34a;
+    }
+
+    .msg {
+      display: block;
+      min-height: 20px;
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #9ca3af;
+    }
+
+    .msg.error {
+      color: #dc2626;
+    }
+
+    .msg.ok {
+      color: #16a34a;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: #c2410c;
+      color: #FFFFFF;
+      border: 0;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .btn-submit:hover {
+      background: #9a3412;
+    }
+
+    #result {
+      display: none;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    #result.success {
+      display: block;
+      background: #f0fdf4;
+      color: #16a34a;
+      border: 1px solid #16a34a;
+    }
+
+    #result.failure {
+      display: block;
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #dc2626;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 22px 18px 26px; }
+      .card h1 { font-size: 24px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="card">
+
+    <h1>Đăng ký tài khoản</h1>
+    <p class="subtitle">Dữ liệu được kiểm tra bằng JavaScript trước khi gửi.</p>
+
+    <form id="register-form" novalidate>
+
+      <div class="field">
+        <label for="fullname">Họ và tên</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Ví dụ: Nguyễn Văn An">
+        <span class="msg" id="fullname-msg"></span>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Ví dụ: an@example.com">
+        <span class="msg" id="email-msg"></span>
+      </div>
+
+      <div class="field">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" name="password" placeholder="Ít nhất 6 ký tự">
+        <span class="msg" id="password-msg"></span>
+      </div>
+
+      <div class="field">
+        <label for="confirm">Xác nhận mật khẩu</label>
+        <input type="password" id="confirm" name="confirm" placeholder="Gõ lại mật khẩu">
+        <span class="msg" id="confirm-msg"></span>
+      </div>
+
+      <button type="submit" class="btn-submit">Đăng ký</button>
+
+    </form>
+
+    <p id="result"></p>
+
+  </main>
+
+
+  <script>
+
+    "use strict";
+
+    var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+
+    var form = document.getElementById("register-form");
+
+    var fields = {
+      fullname: {
+        input: document.getElementById("fullname"),
+        msg: document.getElementById("fullname-msg"),
+        check: function (value) {
+          if (value.trim() === "") { return "Họ tên không được để trống"; }
+          return "";
+        }
+      },
+      email: {
+        input: document.getElementById("email"),
+        msg: document.getElementById("email-msg"),
+        check: function (value) {
+          if (value.trim() === "") { return "Email không được để trống"; }
+          if (!EMAIL_PATTERN.test(value.trim())) { return "Email không hợp lệ (định dạng: ten@domain.com)"; }
+          return "";
+        }
+      },
+      password: {
+        input: document.getElementById("password"),
+        msg: document.getElementById("password-msg"),
+        check: function (value) {
+          if (value === "") { return "Mật khẩu không được để trống"; }
+          if (value.length < 6) { return "Mật khẩu phải có ít nhất 6 ký tự"; }
+          return "";
+        }
+      },
+      confirm: {
+        input: document.getElementById("confirm"),
+        msg: document.getElementById("confirm-msg"),
+        check: function (value) {
+          if (value === "") { return "Vui lòng nhập lại mật khẩu"; }
+          if (value !== fields.password.input.value) { return "Xác nhận mật khẩu không khớp"; }
+          return "";
+        }
+      }
+    };
+
+    function showState(name, error) {
+      var field = fields[name];
+      field.input.classList.remove("invalid", "valid");
+      field.msg.classList.remove("error", "ok");
+
+      if (error === "") {
+        field.input.classList.add("valid");
+        field.msg.classList.add("ok");
+        field.msg.textContent = "✓ Hợp lệ";
+      } else {
+        field.input.classList.add("invalid");
+        field.msg.classList.add("error");
+        field.msg.textContent = "✗ " + error;
+      }
+    }
+
+    function validateField(name) {
+      var field = fields[name];
+      var error = field.check(field.input.value);
+      showState(name, error);
+      return error === "";
+    }
+
+    function validateAll() {
+      var allOk = true;
+      Object.keys(fields).forEach(function (name) {
+        if (!validateField(name)) { allOk = false; }
+      });
+      return allOk;
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var ok = validateAll();
+      var result = document.getElementById("result");
+
+      result.classList.remove("success", "failure");
+      if (ok) {
+        result.classList.add("success");
+        result.textContent = "✓ Đăng ký thành công! Dữ liệu đã được kiểm tra hợp lệ.";
+      } else {
+        result.classList.add("failure");
+        result.textContent = "✗ Biểu mẫu chưa hợp lệ, vui lòng sửa các ô viền đỏ.";
+      }
+    });
+
+    Object.keys(fields).forEach(function (name) {
+      fields[name].input.addEventListener("input", function () {
+        validateField(name);
+      });
+    });
+
+  </script>
+</body>
+</html>

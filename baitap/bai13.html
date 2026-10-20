@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 13 - Đồng hồ số</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #efefef;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 24px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .dong-ho {
+      background: #000000;
+      border-radius: 22px;
+      padding: 26px 30px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 320px;
+      justify-content: center;
+    }
+
+    .dong-ho img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
+    .loi-chao {
+      background: #FFFFFF;
+      color: #c62828;
+      font-family: "Times New Roman", serif;
+      font-size: 64px;
+      line-height: 1.1;
+      padding: 24px 48px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .dong-ho { padding: 14px 12px; gap: 6px; }
+      .dong-ho img { height: 34px; }
+      .loi-chao { font-size: 30px; padding: 16px 20px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1 class="sr-only">Bài 13 - Đồng hồ số dùng Date và setInterval</h1>
+
+  <main class="dong-ho" id="dongHo" aria-label="Đồng hồ số">
+  </main>
+
+  <p class="loi-chao" id="loiChao">Chào buổi sáng</p>
+
+  <script>
+
+    const THU_MUC = "Anh/Bai13/";
+
+    function haiChuSo(n) {
+      return n < 10 ? "0" + n : "" + n;
+    }
+
+    function anhSo(n) {
+      const chuoi = haiChuSo(n);
+      const hangChuc = chuoi.charAt(0);
+      const hangDonVi = chuoi.charAt(1);
+      return '<img src="' + THU_MUC + "0" + hangChuc + '.gif" alt="' + hangChuc + '">' +
+             '<img src="' + THU_MUC + "0" + hangDonVi + '.gif" alt="' + hangDonVi + '">';
+    }
+
+    function anhHaiCham() {
+      return '<img src="' + THU_MUC + 'haicham.gif" alt=":">';
+    }
+
+    function loiChao(gio) {
+      if (gio < 12) return "Chào buổi sáng";
+      if (gio < 13) return "Chào buổi trưa";
+      if (gio < 18) return "Chào buổi chiều";
+      return "Chào buổi tối";
+    }
+
+    function veDongHo() {
+      const bayGio = new Date();
+      const gio = bayGio.getHours();
+      const hinh = anhSo(gio) +
+                   anhHaiCham() +
+                   anhSo(bayGio.getMinutes()) +
+                   anhHaiCham() +
+                   anhSo(bayGio.getSeconds());
+      document.getElementById("dongHo").innerHTML = hinh;
+      document.getElementById("loiChao").textContent = loiChao(gio);
+    }
+
+    veDongHo();
+
+    setInterval(veDongHo, 1000);
+
+  </script>
+</body>
+</html>
