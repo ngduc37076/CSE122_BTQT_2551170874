@@ -1,49 +1,111 @@
 <!DOCTYPE html>
-<html>
+    <html lang="vi">
     <head>
-        <title>Trang giới thiệu Vịnh Hạ Long</title>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vịnh Hạ Long - Kỳ quan thiên nhiên thế giới</title>
         <style>
-            #first-text{
-                background-color:#0b3d5c ;
-                color:#FFFFFF;
-                font-style: italic;
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
             }
-            img{
-                float: right;
-                height: 150px;
-                border-radius: 8%;
-                margin-top: 40px;
+            body {
+                /* Nền trang: dải màu gradient xanh biển phủ toàn trang */
+                background: linear-gradient(135deg, #7ec8e3, #0a5c8a);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                font-family:'Times New Roman', Times, serif;
             }
-            body{
-                background-color: linear-gradient(to bottom, #7ec8e3, #0a5c8a );
-                
+
+            .container {
+                background-color: #ffffff;
+                width: 100%;
+                max-width: 900px;
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+                padding: 40px;
             }
-            h1{
+
+            /* Tiêu đề: in đậm, căn giữa, màu chữ #0b3d5c (hoặc trắng nếu xét trên nền, nhưng theo đề bài yêu cầu chữ #0b3d5c) */
+            h1 {
+                color: #0b3d5c;
                 text-align: center;
-                color: #0b3d5c ;
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 30px;
             }
-             section::first-letter{
-                font-size: 50px;
+
+            /* Khối mở đầu: nền #0b3d5c, chữ #ffffff in nghiêng, bo góc */
+            .intro-box {
+                background-color: #0b3d5c;
+                color: #ffffff;
+                padding: 20px 25px;
+                border-radius: 8px;
+                font-style: italic;
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 30px;
             }
-            section{
+
+            .content-wrapper {
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* Ảnh minh họa: chèn nổi bên phải, bo góc 8px */
+            .content-wrapper img {
+                float: right;
+                width: 320px;
+                height: auto;
+                border-radius: 8px;
+                margin-left: 20px;
+                margin-bottom: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            /* Đoạn thân: căn đều */
+            .content-wrapper p {
                 text-align: justify;
+                color: #2c3e50;
+                font-size: 16px;
+                line-height: 1.8;
+                margin-bottom: 20px;
+            }
+
+            /* Chữ cái đầu tiên tô đậm màu xanh (#0b3d5c) */
+            .content-wrapper p::first-letter {
+                font-size: 38px;
+                font-weight: bold;
+                color: #0b3d5c;
+                float: left;
+                line-height: 1;
+                margin-right: 8px;
+                margin-top: 2px;
             }
         </style>
     </head>
-
     <body>
-        <main>
-            <header>
-                <h1 title="Đây là tên chủ đề">Vịnh Hạ Long - Kỳ quan thiên nhiên thế giới</h1>
-                <img src="Gui_SV_BTTH/Anh/Bai03/vinh-ha-long.jpg" alt="Vịnh hạ Long">
-            </header>
-                <p id="first-text">Vịnh hạ Long thuộc tỉnh Quảng Ninh, nổi tiếng với gần 2.000 hòn đảo đá vôi lớn nhỏ, được UNESCO công nhận là Di sản thiên nhiên thế giới.</p>
-            <section>
-                <p>Vịnh trải rộng trên vùng biển Đông Bắc, nơi những đảo đá muôn hình dáng nổi trên mặt nước nước xanh ngọc. Du khách có thể ngủ đêm trên du thuyền, chèo kayak xuyên hang, ngắm bình minh từ đảo Titop hay khám phá hang Sửng Sốt huyền ảo.</p>
-                <p>Hải sản Hạ long phong phú, con người thân thiện, cảnh sắc bốn mùa đều đẹp - đây là điểm đến không thể bỏ lỡ của du khách trong và ngoài nước.</p>
-            </section>
-        </main>
+
+        <div class="container">
+            <!-- Tiêu đề -->
+            <h1>Vịnh Hạ Long - Kỳ quan thiên nhiên thế giới</h1>
+            <!-- Khối mở đầu -->
+            <div class="intro-box">
+                Vịnh Hạ Long thuộc tỉnh Quảng Ninh, nổi tiếng với gần 2.000 hòn đảo đá vôi lớn nhỏ, được UNESCO công nhận là Di sản thiên nhiên thế giới.
+            </div>
+            <!-- Nội dung chi tiết kèm ảnh -->
+            <div class="content-wrapper">
+                <img src="Gui_SV_BTTH/Anh/Bai03/vinh-ha-long.jpg" alt="Vịnh Hạ Long">
+                
+                <p>Vịnh trải rộng trên vùng biển Đông Bắc, nơi những đảo đá muôn hình dáng nổi trên mặt nước xanh ngọc. Du khách có thể ngủ đêm trên du thuyền, chèo kayak xuyên hang, ngắm bình minh từ đảo Titop hay khám phá hang Sửng Sốt huyền ảo.</p>
+                
+                <p>Hải sản Hạ Long phong phú, con người thân thiện, cảnh sắc bốn mùa đều đẹp – đây là điểm đến không thể bỏ lỡ của du khách trong và ngoài nước.</p>
+            </div>
+        </div>
     </body>
 </html>
+
